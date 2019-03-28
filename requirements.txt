@@ -1,0 +1,6 @@
+pip
+Flask
+requests
+jsonify
+plotly
+cassandra-driver
