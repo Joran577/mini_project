@@ -9,12 +9,14 @@ app = Flask(__name__)
 with open('lines.json') as l:
     lines = json.load(l)
 
+#method to get the names of all train lines
 @app.route('/trains', methods=['GET'])
 def get_lines():
     train = [subway['name'] for subway in lines]
     return jsonify({'Train Lines' : train}), 200
 
 
+#GET method return the type mode the train is based on the given line
 @app.route('/trains/<line>', methods=['GET'])
 def get_line(line):
     train = [subway['modeName'] for subway in lines if subway['name'] == line]
@@ -24,6 +26,7 @@ def get_line(line):
       return jsonify({'Train Type' : train}), 200
 
 
+#GET method to return the train lines that run on the given mode
 @app.route('/trains/type/<mode>', methods=['GET'])
 def get_mode(mode):
     tubes = [type['name'] for type in lines if type['modeName'] == mode]
@@ -33,6 +36,7 @@ def get_mode(mode):
       return jsonify({'Line(s)' : tubes}), 200
 
 
+#This method adds a train into the database
 @app.route('/trains', methods=['POST'])
 def add_line():
     new_line = {
@@ -45,6 +49,7 @@ def add_line():
     return jsonify({'Lines' : lines}), 201
 
 
+#A method to update the information in the database
 @app.route('/trains/<line>', methods=['PUT'])
 def update_line(line):
     train = [subway for subway in lines if subway['name'] == line]
@@ -55,6 +60,7 @@ def update_line(line):
     return jsonify({'train' : train[0]}), 200
 
 
+#This method deletes a train line based on the given name
 @app.route('/trains/<line>', methods=['DELETE'])
 def remove_line(line):
     trains = [subway for subway in lines if subway['name'] == line]
@@ -65,6 +71,7 @@ def remove_line(line):
         return jsonify({'Removed!' : lines})
 
 
+#This methods ruterns data from a cassandra database that has statistics on mario kart racers
 @app.route('/mario/<name>', methods=['GET'])
 def racer(name):
     rows = session.execute( """Select * From characters.stats
