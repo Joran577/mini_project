@@ -16,7 +16,7 @@ def get_lines():
     return jsonify({'Train Lines' : train}), 200
 
 
-#GET method return the type mode the train is based on the given line
+#GET method to return the type mode the train is based on the given line
 @app.route('/trains/<line>', methods=['GET'])
 def get_line(line):
     train = [subway['modeName'] for subway in lines if subway['name'] == line]
@@ -71,7 +71,7 @@ def remove_line(line):
         return jsonify({'Removed!' : lines})
 
 
-#This methods ruterns data from a cassandra database that has statistics on mario kart racers
+#This methods returns data from a cassandra database that has statistics on mario kart racers
 @app.route('/mario/<name>', methods=['GET'])
 def racer(name):
     rows = session.execute( """Select * From characters.stats
