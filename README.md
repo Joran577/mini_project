@@ -161,6 +161,20 @@ Handling_Air,Handling_Ground,Traction,Mini_Turbo) FROM 'characters.csv'
 WITH DELIMITER=',' AND HEADER=TRUE;
 ```
 
+```code
+from flask import Flask, jsonify, json, request
+from cassandra.cluster import Cluster
+
+cluster = Cluster(['cassandra'])
+session = cluster.connect()
+
+app = Flask(__name__)
+
+with open('lines.json') as l:
+    lines = json.load(l)
+  
+  ```
+
 
 
 
