@@ -4,6 +4,9 @@ This is a demenstration on how to build and run a web application using python, 
 Furthermore, the app allows the extracting of mario kart stats. The method created allows the ability to obtain the characters speed, based on the character name passed through the url.
 
 
+# Tfl API
+Te get the information of the train lines, go to the Tfl API ([here](https://api.tfl.gov.uk/)) and download it into a json file.
+
 # Setting up
 To begin, open the google cloud shell and create a directory where the app will live (e.g. mkdir ......).
 
