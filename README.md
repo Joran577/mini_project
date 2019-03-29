@@ -302,7 +302,7 @@ kubectl expose deployment mar-app --type=LoadBalancer --port 80 --target-port 80
 
 Once you have recieved your external IP by running 'kubectl get services', try out the service mthods with train lines, mode types, and mario kart racers of your choice
 
-![screenshot](creenshot from 2019-03-29 15-28-16.png)
+![screenshot] (creenshot from 2019-03-29 15-28-16.png)
 
 
 
