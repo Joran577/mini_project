@@ -1,7 +1,7 @@
 # mini_project
-This is a demenstration on how to build and run a web application using python, flask, docker, clusters, and cassandra. The application uses information from the tfl API to return train line information, such as the name of the train line, which mode it is, the date modified and created.This will also return the information of the given line passed through the url.
+This is a demonstration on how to build and run a web application using python, flask, docker, clusters, and Cassandra. The application uses information from the Tfl API to return train line information, such as the name of the train line, which mode it is, the date modified and created. This will also return the information of the given line passed through the URL.
 
-Furthermore, the app allows the extracting of mario kart stats. The method created allows the ability to obtain the characters speed, based on the character name passed through the url.
+Furthermore, the app allows the extracting of mario kart stats. The method created allows the ability to obtain the characters speed, based on the character name passed through the URL.
 
 
 # Tfl API
@@ -93,7 +93,7 @@ From here the data can now be queries. For example run:
 select * from characters.stats;
 ```
 
-Experiemnt with other queries and see what happens.
+Experiment with other queries and see what happens.
 
 # Cassandra in Kubernetes
 It is time to create a Kubernetes cluster. Issue the following command to create 3 node clusters named 'cassandra'. Note that ```n1-standard-2``` machines will be used, as they have two virtual CPUs and more memory.
@@ -102,7 +102,7 @@ It is time to create a Kubernetes cluster. Issue the following command to create
 gcloud container clusters create cassandra --num-nodes=3 --machine-type "n1-standard-2"
 ```
 
-Next step is to run a specified Kubernetes service. This will be done using three files which are a HEadless service, the Cassandra itself, and the replication Controller. Run the following commands:
+Next step is to run a specified Kubernetes service. This will be done using three files which are a Headless service, the Cassandra itself, and the replication Controller. Run the following commands:
 
 ```
 wget -O cassandra-peer-service.yml http://tinyurl.com/yyxnephy
@@ -275,13 +275,13 @@ if __name__ == '__main__':
 
 Note that on line 4 is the cluster object (connection to the database) specified as 'cassandra'.
 
-On line 9 is where the json file containg data from the Tfl API is loaded.
+On line 9 is where the json file containing data from the Tfl API is loaded.
 
-Also, note that there are three GET methods relating to the Tfl API. The first method will retrieve the names of all the train lines. The second GET method will return thet type of mode the train line sed on the name parsed through the url. The third, returns the name of the train lines that run on the given mode type.
+Also, note that there are three GET methods relating to the Tfl API. The first method will retrieve the names of all the train lines. The second GET method will return the type of mode the train line sed on the name parsed through the URL. The third, returns the name of the train lines that run on the given mode type.
 
 Additionally there is a POST method to add a train line into the database, a PUT method to update existing information on the database, and a DELETE method that deletes a train line from the database completely.
 
-Finally, there is one more GET method which gets the speed of a mario kart racer from the cassandra database previously created, and returns it along with the name of the character. Queries are carried out through the session object and is the same string you would enter in cqlsh.
+Finally, there is one more GET method which gets the speed of a mario kart racer from the Cassandra database previously created, and returns it along with the name of the character. Queries are carried out through the session object and is the same string you would enter in cqlsh.
 
 To continue, it is now time to build our image:
 ```
@@ -300,10 +300,5 @@ kubectl run mar-app --image=gcr.io/${PROJECT_ID}/mar-app:v1 --port 8080
 kubectl expose deployment mar-app --type=LoadBalancer --port 80 --target-port 8080
 ```
 
-Once you have recieved your external IP by running 'kubectl get services', try out the service mthods with train lines, mode types, and mario kart racers of your choice
+Once you have received your external IP by running 'kubectl get services', try out the service methods with train lines, mode types, and mario kart racers of your choice.
 
-! [screenshot] (https://github.com/Joran577/mini_project/blob/master/Screenshot%20from%202019-03-29%2015-37-00.PNG)
-
-
-
-Provided in the code are a set of rest methods. There are four GET methods, a POST method, a PUT method and a DELETE methods. Furthermore, the statistics for the mario kart racers were downloaded from Kaggle in a CSV file. The file contains characters speed stats, type stats, handling stats, and so on.
